@@ -1,4 +1,5 @@
 // This is the gateway service that will combine the data from the user service and the repository service.
+
 const express = require("express");
 const fetch = require("node-fetch");
 
@@ -8,28 +9,27 @@ const port = 3002;
 app.get("/user-with-repos/:username", async (req, res) => {
   const username = req.params.username;
 
-  try {
-    // Fetch user data
-    const userResponse = await fetch(`http://localhost:3000/user/${username}`);
-    const userData = await userResponse.json();
+  const userDataPromise = fetch(`http://localhost:3000/user/${username}`);
+  const repoDataPromise = fetch(`http://localhost:3001/repos/${username}`);
 
-    // Fetch user's repositories
-    const repoResponse = await fetch(`http://localhost:3001/repos/${username}`);
-    const repoData = await repoResponse.json();
+  const [userData, repoData] = await Promise.all([
+    userDataPromise,
+    repoDataPromise,
+  ]);
 
-    // Combine user and repository data
-    const result = {
-      user: userData,
-      repositories: repoData,
-    };
-
-    res.json(result);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    res.status(500).json({ error: "Error fetching data" });
+  if (!userData.ok || !repoData.ok) {
+    res.status(500).json({ error: "Error fetching user or repository data" });
+    return;
   }
+
+  const combinedData = {
+    user: await userData.json(),
+    repos: await repoData.json(),
+  };
+
+  res.json(combinedData);
 });
 
 app.listen(port, () => {
-  console.log(`Gateway service listening at http://localhost:${port}`);
+  console.log(`Gateway service listening on port ${port}`);
 });
