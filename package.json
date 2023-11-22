@@ -1,0 +1,27 @@
+{
+  "type": "commonjs",
+  "name": "github-microservices-demo",
+  "version": "1.0.0",
+  "description": "GitHub Microservices Demo",
+  "main": "index.js",
+  "scripts": {
+    "start:user-service": "node app/services/user-service.js",
+    "start:repo-service": "node app/services/repo-service.js",
+    "start:gateway-service": "node app/services/gateway-service.js",
+    "start": "concurrently \"npm:start:user-service\" \"npm:start:repo-service\" \"npm:start:gateway-service\""
+
+  },
+  "keywords": [
+    "microservices",
+    "github-api",
+    "nodejs",
+    "express"
+  ],
+  "author": "Lina Beltrán",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.5"
+  }
+}
