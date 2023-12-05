@@ -6,10 +6,10 @@ comprises three microservices
 
 ## How to run:
 
-Make sure to install the required dependencies by running:
+Make sure to install all the required dependencies by running:
 
 ```bash
-    npm install express node-fetch
+    npm install
 ```
 
 This example includes three services:
@@ -33,12 +33,6 @@ To run this example, you would start each service in a separate terminal window:
 or use the concurrently package to run all three services at once:
 
 ```bash
-    npm install concurrently
-```
-
-then run:
-
-```bash
     npm run start
 ```
 
@@ -47,7 +41,6 @@ to the Gateway Service:
 
 ```bash
     curl http://localhost:3002/user-with-repos/{github-username}
-
 ```
 
 Replace `{github-username}` with an actual GitHub username. This is a simplified

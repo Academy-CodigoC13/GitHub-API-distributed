@@ -1,13 +1,26 @@
 // This is the user service that will
 // fetch user data from the GitHub API.
-const express = require("express"); // express is a web framework for node.js
-const fetch = require("node-fetch"); // node-fetch is a module that allows us to make HTTP requests from node.js
 
-const app = express(); // create an express app
-const port = 3000; // the port the app will listen on
+// express is a web framework for node.js
+const express = require("express");
+
+// cors is a module that allows us to make requests from the browser
+const cors = require("cors");
+
+// node-fetch is a module that allows us to make HTTP requests from node.js
+const fetch = require("node-fetch");
+
+// create an express app
+const app = express();
+
+// allow cross-origin requests from the browser
+app.use(cors("*"));
+
+// the port the app will listen on
+const port = 3000;
 
 // This function will fetch user data from the GitHub API
-const getUserData = async (username) => {
+const getUserDataService = async (username) => {
   // make a request to the GitHub API
   const response = await fetch(`https://api.github.com/users/${username}`);
   const userData = await response.json(); // convert the response into JSON
@@ -20,8 +33,8 @@ app.get("/user/:username", async (req, res) => {
 
   // try/catch block to handle errors
   try {
-    // Call the getUserData function and send the response
-    const userData = await getUserData(username);
+    // Call the getUserDataService function and send the response
+    const userData = await getUserDataService(username);
     res.json(userData);
   } catch (error) {
     // If there is an error, send an error response

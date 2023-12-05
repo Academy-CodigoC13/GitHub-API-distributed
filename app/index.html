@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>GitHub Services Interface</title>
+</head>
+
+<body>
+    <header>
+        <h1>GitHub Services Interface</h1>
+    </header>
+
+    <main>
+        <section id="userSection">
+            <h2>User Information</h2>
+            <label for="username">GitHub Username:</label>
+            <input type="text" id="username" placeholder="Enter GitHub username">
+            <button onclick="getUserData()">Get User Data</button>
+            <div id="userData"></div>
+        </section>
+
+        <section id="repoSection">
+            <h2>User Repositories</h2>
+            <label for="repoUsername">GitHub Username:</label>
+            <input type="text" id="repoUsername" placeholder="Enter GitHub username">
+            <button onclick="getRepoData()">Get Repositories</button>
+            <div id="repoData"></div>
+        </section>
+
+        <section id="combinedSection">
+            <h2>User with Repositories</h2>
+            <label for="combinedUsername">GitHub Username:</label>
+            <input type="text" id="combinedUsername" placeholder="Enter GitHub username">
+            <button onclick="getCombinedData()">Get User with Repos</button>
+            <div id="combinedData"></div>
+        </section>
+    </main>
+</body>
+
+</html>

@@ -1,10 +1,12 @@
 const express = require("express");
 const fetch = require("node-fetch");
+const cors = require("cors");
 
 const app = express();
+app.use(cors("*"));
 const port = 3001;
 
-const getRepoData = async (username) => {
+const getRepoDataService = async (username) => {
   const response = await fetch(
     `https://api.github.com/users/${username}/repos`
   );
@@ -16,7 +18,7 @@ app.get("/repos/:username", async (req, res) => {
   const username = req.params.username;
 
   try {
-    const repoData = await getRepoData(username);
+    const repoData = await getRepoDataService(username);
     res.json(repoData);
   } catch (error) {
     console.error("Error fetching repository data:", error);
