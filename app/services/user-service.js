@@ -4,11 +4,11 @@
 // express is a web framework for node.js
 const express = require("express");
 
-// cors is a module that allows us to make requests from the browser
-const cors = require("cors");
-
 // node-fetch is a module that allows us to make HTTP requests from node.js
 const fetch = require("node-fetch");
+
+// cors is a module that allows us to make requests from the browser
+const cors = require("cors");
 
 // create an express app
 const app = express();

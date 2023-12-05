@@ -8,6 +8,7 @@
     "start:user-service": "node app/services/user-service.js",
     "start:repo-service": "node app/services/repo-service.js",
     "start:gateway-service": "node app/services/gateway-service.js",
+    "start:app": "node app/app.js",
     "start": "concurrently \"npm:start:user-service\" \"npm:start:repo-service\" \"npm:start:gateway-service\""
   },
   "keywords": [

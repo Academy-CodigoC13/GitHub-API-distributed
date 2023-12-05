@@ -7,7 +7,7 @@ const gatewayService = require("./services/gateway-service");
 const app = express();
 const port = 3003;
 
-app.use(cors("*"));
+app.use(cors());
 
 // Define routes for user service
 app.use("/user", userService);
